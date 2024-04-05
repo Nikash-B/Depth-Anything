@@ -9,8 +9,8 @@ from torchvision.transforms import Compose
 import tempfile
 from gradio_imageslider import ImageSlider
 
-from depth_anything.dpt import DepthAnything
-from depth_anything.util.transform import Resize, NormalizeImage, PrepareForNet
+from DepthAnythingFolder.depth_anything.dpt import DepthAnything
+from DepthAnythingFolder.depth_anything.util.transform import Resize, NormalizeImage, PrepareForNet
 
 css = """
 #img-display-container {
@@ -85,9 +85,9 @@ with gr.Blocks(css=css) as demo:
 
     submit.click(on_submit, inputs=[input_image], outputs=[depth_image_slider, raw_file])
 
-    example_files = os.listdir('assets/examples')
+    example_files = os.listdir('DepthAnythingFolder/assets/examples')
     example_files.sort()
-    example_files = [os.path.join('assets/examples', filename) for filename in example_files]
+    example_files = [os.path.join('DepthAnythingFolder/assets/examples', filename) for filename in example_files]
     examples = gr.Examples(examples=example_files, inputs=[input_image], outputs=[depth_image_slider, raw_file], fn=on_submit, cache_examples=False)
     
 
