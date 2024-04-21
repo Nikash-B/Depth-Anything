@@ -23,8 +23,10 @@ css = """
     max-height: 80vh;
     }
 """
-DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
-model = DepthAnything.from_pretrained('LiheYoung/depth_anything_vitl14').to(DEVICE).eval()
+
+DEVICE = 'cuda' if torch.cuda.is_available() else 'mps' # Could be 'cpu' in the else case
+modelVersion = 's' # Should be 's' for small, 'b' for base, or 'l' for large.
+model = DepthAnything.from_pretrained('LiheYoung/depth_anything_vit' + modelVersion + '14').to(DEVICE).eval()
 
 title = "# Depth Anything"
 description = """Official demo for **Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data**.
